@@ -1,0 +1,141 @@
+/* ensure consistent styling */
+:root {
+  --background-color: #eed8ff;
+  --contact-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #aa3bff;
+  --interactive-color: #5e278a;
+  --spacing: 10px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
+/* PAGE */
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: var(--spacing);
+}
+
+/* ADD CONTACT FORM */
+form {
+  width: 60%;
+  border: 0pt;
+  margin: var(--spacing);
+  padding: var(--spacing);
+  display: grid;
+  justify-self: center;
+}
+
+legend {
+  font: var(--mono);
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+label {
+  font: var(--mono);
+  font-weight: bold;
+  color: var(--text-color);
+  padding: 5px;
+}
+
+textarea {
+  font: var(--mono);
+  font-size: 14pt;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 2px;
+  width: 50%;
+  height: 200px;
+}
+
+input {
+  font: var(--mono);
+  font-size: 14pt;
+  border: 2px solid var(--background-color);
+  margin: var(--spacing);
+  padding: var(--spacing);
+  width: 50%;
+}
+
+input:focus { /* create focus state for inputs by changing border of text box */
+  border-color: var(--interactive-color);
+  outline: 2px;
+}
+
+/* CONTACT CARDS */
+.contactCard { /* class selector */
+  background: var(--contact-color);
+  border: 2px solid var(--accent-color);
+  margin: var(--spacing);
+  width: 600px;
+  justify-self: center;
+}
+
+/* BUTTONS FOR ADDING AND DELETING CONTACTS */
+button {
+  background: var(--accent-color);
+  font: var(--mono);
+  font-weight: bold;
+  font-size: 14pt;
+  margin: var(--spacing);
+  padding: var(--spacing);
+  border: 0;
+  border-radius: 2px;
+  width: 150px;
+  justify-self: center;
+}
+
+button:hover { /* create focus state for inputs by changing the button's color when it's clicked */
+  background: var(--interactive-color);
+}
+
+/* CSS rules for cards on smaller screens; rules for non-input text are already implemented in index.css */
+@media only screen and (min-width: 769px) and (max-width: 1023px)
+{
+  /* make text inputs smaller on tablet screens */
+  input {
+    font-size: 12pt;
+  }
+
+  .searchBar input {
+    font-size: 12pt;
+  }
+
+  .contactCard {
+  width: 500px;
+  justify-self: center;
+  }
+}
+
+@media only screen and (max-width: 768px)
+{
+  /* make text inputs smaller on phone screens */
+  input {
+    font-size: 12pt;
+  }
+  /* stack search bar label and input on phone screens */
+  .searchBar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-self: stretch;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .searchBar input {
+    font-size: 12pt;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .contactCard {
+  width: 400px;
+  justify-self: center;
+  }
+}

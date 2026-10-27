@@ -1,0 +1,250 @@
+Prompt 1:
+Quick question: because it's required, I added an email validity check below the code requiring a name and email address if either of those fields are empty:
+//basic email validity check
+    if (!email.includes('@')) {
+      alert('You must enter a valid email address.')
+      return
+    }
+I tested out the code by typing "chicken" for the name and "nugget" for the email. When I hit the submit button, I got an alert saying "Please include an '@' in the email address. 'nugget' is missing an '@'.", not the alert I wrote out. The alert wasn't a dialogue box from the localhost. Why did that happen?
+
+Prompt 2:
+I'm reading the functional requirements again:
+
+### List Contacts
+
+- Render a list (table, cards, or rows) of contacts from state using map.
+- Each rendered item uses a **stable key** (the contact’s id).
+- Include a clear **empty state** message (e.g., “No contacts yet. Add one above!”).
+
+I already handled the last two bullet points, and I'm kinda freaking out over the first one because it doesn't look like a list of contacts (no table, card format isn't explicit, contacts are stacked though). I really hope I don't have to add any more to App.jsx because it's working just fine the way it is. I also found this in the styling requirements:
+
+## UI/UX & Styling
+
+- Keep styling **clean and consistent**: reuse colors/spacings via CSS variables if you like (as in Project 1), and ensure mobile friendliness / RWD.
+- Provide clear *focus states* for inputs and buttons
+  - ensure text contrast and legibility.
+- **Responsive**:
+  - list should read well on phone/tablet/desktop (stacking, spacing).
+
+I'm trying to implement clear focus states by making the borders of my input text areas change colors but it's not working, and I think I got that part covered for the buttons since I made them change color when you hover over them. I also noticed slight changes in font sizes when testing out the page's responsiveness; does React automatically have size changes implemented?
+
+Prompt 3:
+Here's how my CSS looks like:
+/* ensure consistent styling */
+:root {
+  --background-color: #eed8ff;
+  --contact-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #aa3bff;
+  --interactive-color: #5e278a;
+  --spacing: 10px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
+/* PAGE */
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: var(--spacing);
+}
+
+/* ADD CONTACT FORM */
+form {
+  width: 60%;
+  border: 0pt;
+  margin: var(--spacing);
+  padding: var(--spacing);
+  display: grid;
+  justify-self: center;
+}
+
+legend {
+  font: var(--mono);
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+label {
+  font: var(--mono);
+  font-weight: bold;
+  color: var(--text-color);
+  padding: 5px;
+}
+
+textarea {
+  font: var(--mono);
+  font-size: 14pt;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 2px;
+  width: 50%;
+  height: 200px;
+}
+
+input {
+  font: var(--mono);
+  font-size: 14pt;
+  border: 2px solid var(--background-color);
+  margin: var(--spacing);
+  padding: var(--spacing);
+  width: 50%;
+}
+
+input:focus {
+  border-color: var(--interactive-color);
+  outline: 2px;
+}
+
+/* CONTACT CARDS */
+.contactCard { /* class selector */
+  background: var(--contact-color);
+  border: 2px solid var(--accent-color);
+  margin: var(--spacing);
+  width: 50%;
+  justify-self: center;
+}
+
+/* BUTTONS FOR ADDING AND DELETING CONTACTS */
+button {
+  background: var(--accent-color);
+  font: var(--mono);
+  font-weight: bold;
+  font-size: 14pt;
+  margin: var(--spacing);
+  padding: var(--spacing);
+  border: 0;
+  border-radius: 2px;
+  width: 150px;
+  justify-self: center;
+}
+
+button:hover {
+  background: var(--interactive-color);
+}
+When it comes to responsiveness, the instructions say "list should read well on phone/tablet/desktop (stacking, spacing)". I don't know if I want to make one rule for non-desktop screens or two, for different-sized mobile devices. index.css already handles font size changes but uses only one @media rule, while I implemented 2 for my last assignment (actually 3, but the rule for large screens is empty because it's my default). How can I emplement responsiveness rules given this CSS?
+
+Prompt 4:
+How do I stop the search bar from doing that when I make my screen super small? Here's my CSS:
+/* ensure consistent styling */
+:root {
+  --background-color: #eed8ff;
+  --contact-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #aa3bff;
+  --interactive-color: #5e278a;
+  --spacing: 10px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
+/* PAGE */
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: var(--spacing);
+}
+
+/* ADD CONTACT FORM */
+form {
+  width: 60%;
+  border: 0pt;
+  margin: var(--spacing);
+  padding: var(--spacing);
+  display: grid;
+  justify-self: center;
+}
+
+legend {
+  font: var(--mono);
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+label {
+  font: var(--mono);
+  font-weight: bold;
+  color: var(--text-color);
+  padding: 5px;
+}
+
+textarea {
+  font: var(--mono);
+  font-size: 14pt;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 2px;
+  width: 50%;
+  height: 200px;
+}
+
+input {
+  font: var(--mono);
+  font-size: 14pt;
+  border: 2px solid var(--background-color);
+  margin: var(--spacing);
+  padding: var(--spacing);
+  width: 50%;
+}
+
+input:focus {
+  border-color: var(--interactive-color);
+  outline: 2px;
+}
+
+/* CONTACT CARDS */
+.contactCard { /* class selector */
+  background: var(--contact-color);
+  border: 2px solid var(--accent-color);
+  margin: var(--spacing);
+  width: 600px;
+  justify-self: center;
+}
+
+/* BUTTONS FOR ADDING AND DELETING CONTACTS */
+button {
+  background: var(--accent-color);
+  font: var(--mono);
+  font-weight: bold;
+  font-size: 14pt;
+  margin: var(--spacing);
+  padding: var(--spacing);
+  border: 0;
+  border-radius: 2px;
+  width: 150px;
+  justify-self: center;
+}
+
+button:hover {
+  background: var(--interactive-color);
+}
+
+/* CSS rules for cards on smaller screens; rules for text are already implemented in index.css */
+@media only screen and (min-width: 769px) and (max-width: 1023px)
+{
+  .contactCard {
+  width: 500px;
+  justify-self: center;
+  }
+}
+
+@media only screen and (max-width: 768px)
+{
+  .searchBar {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .contactCard {
+  width: 400px;
+  justify-self: center;
+  }
+}
